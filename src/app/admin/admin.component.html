@@ -1,0 +1,54 @@
+<div class="row">
+  
+  <div class="col-xs-6">
+    <button class="btn btn-primary" (click)="createCompany()">Create New Company</button>
+  </div>
+  <div class="col-xs-6">
+     <div class="col-sm-6">
+       <div class="form-group">
+         <label>Search</label>
+         <input type="text" [(ngModel)]="searchString" class="form-control">
+       </div>
+     </div>
+     <div class="col-sm-6">
+        <div class="form-group">
+          <label>Based On</label>
+          <select name="basedOn" class="form-control open" [(ngModel)]="base" >
+            <option [value]="all" *ngFor="let all of searchBase">{{all}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+</div>
+<div class="row">
+  <div class="col-sm-8">
+    <hr>
+    <table >
+      <tr>
+        <th>Sno.</th>
+        <th>Company NAme</th>
+        <th>Created By</th>
+        <th>Company address</th>
+        <th>Actions</th>
+      </tr>
+      <tr 
+        *ngFor="let company of companies | filter: searchString:base ; let i=index ">
+          <td>{{i}}</td>
+          <td>{{company.companyName}}</td>
+          <td>{{company.createdBy | shortstring}}</td>
+          <td>{{company.CompanyAddress}}</td> 
+          <td><button class="btn btn-primary" (click)="onEdit(i)" >Edit</button> 
+              <button class="btn btn-danger" (click)="onDelete(i)">Delete</button>
+              <button *ngIf="!company.approved"class="btn btn-warning" (click)="onApprove(i)">Approve</button>
+           </td> 
+      </tr>
+    </table>
+  </div>
+  <hr>
+    <div class="col-sm-4">
+      <router-outlet></router-outlet>  
+    </div>
+    
+ 
+</div>

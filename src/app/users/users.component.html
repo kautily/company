@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-sm-8 col-sm-offset-2">
+    <button class="btn btn-primary" (click)="createCompany()">Create New Company</button>
+  </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+      <hr>
+      <table *ngIf="companies.length !== 0">
+            <tr>
+              <th>Sno.</th>
+              <th>Company Name</th>
+              <th>Company Address</th>
+              <th>Approve Status</th>
+            </tr>
+            <tr *ngFor="let company of companies; let i=index">
+                <td>{{i}}</td>
+                <td>{{company.companyName}}</td>
+                <td>{{company.CompanyAddress}}</td>
+                <td>{{(company.approved) ? 'Yes': 'No'}}</td>
+            </tr>
+          </table>
+          <h2 class="text-center text-warning" *ngIf="companies.length === 0">You have not created any company yet !!</h2>
+    </div>
+  </div>

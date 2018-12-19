@@ -1,0 +1,14 @@
+<nav class="navbar navbar-default">
+  <div class="container">
+    <ul class="nav navbar-nav ">
+      <li *ngIf="currentuser"> <a>Welcome {{currentuser}}</a> </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+        <ng-template [ngIf]= "currentuser === null">
+        <li routerLinkActive="active"><a routerLink="register">Register</a> </li>
+        <li routerLinkActive="active"><a routerLink="login">Login</a> </li>
+      </ng-template>
+        <li routerLinkActive="active" *ngIf="currentuser"><a (click)="logout()">Logout</a> </li>        
+    </ul>
+  </div>
+</nav>  
